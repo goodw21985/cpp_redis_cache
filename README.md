@@ -9,7 +9,10 @@ The redis servers should not be configured as a cluster, and should each act as 
 Configure the conf file for the redis server instances to set the amount of memory reserved for caching, and other preferences you have.
 This library can hold a few redis instances in reserve, in case there is a machine failure that is not fixed quickly.  If too many redis instances go down,
 some parts of the cache will not respond, and so there will be less cache coverage.  When a redis instance is replaced in the pool, the cache will be empty, and
-will become filled through the normal course of operations.
+will become filled through the normal course of operations.'
+
+Adding or removing servers is allowed, but every client should be informed of the changes over time.
+
 
 **SYNOPSIS:**
 ```c++
