@@ -74,7 +74,7 @@ redis instances, and if it cannot, to release all locks quickly, and then wait a
 set set the configuration into a global variable held (identically) within every redis server.  If a few redis servers lack good configuration data, it will retrieved from another.
 
 With very large clusters (like 3000 that are used in Bing for caching - each holding 2GB of cache), lock contention gets harder.  The solution is simply to increase some values in
-the CacheConfig struct, especially maxDelayBetweenLockTries.
+the CacheConfig struct, especially maxDelayBetweenLockTries.  Delays on the order of 5 or 10 minutes may be appropriate for huge clusters.  
 
 ```c++
   class CacheConfig
