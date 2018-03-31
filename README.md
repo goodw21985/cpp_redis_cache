@@ -67,6 +67,7 @@ cache HashGetAll("key", [=](reply& reply)
 ```
 
 **Very Large Clusters**
+
 When there is are failures in any redis instance, all of the clients need to come to a consensus on how to reconfigure the cluster.  Any client can do this, and a 
 'redlock' algorithm is used to compete for a distributed lock on the cluster configuration.  Roughly, redlock requires that a client gets a lock from more than half of all 
 redis instances, and if it cannot, to release all locks quickly, and then wait a random amount of time before trying to get the lock again.  Once one clients gets a lock, it will
@@ -112,4 +113,11 @@ the CacheConfig struct, especially maxDelayBetweenLockTries.
         int redLockTimeoutMargin = 1000;
     };
  ```
+
+**Functional Test**
+
+The functional test is a good example of how to use the library.  It actually starts 10 instances of the redis server on your box while the functional test is running, and runs simple tests using real redis servers.
+The functional test uses windows calls, so is not usable (as is) in linux.
+
+
 
